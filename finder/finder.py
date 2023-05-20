@@ -15,6 +15,7 @@ def search_data():
 
     response = {'cities': city_result, 'events': event_result}
 
+
     return jsonify(response)
 
 
