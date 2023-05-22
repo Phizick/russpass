@@ -9,6 +9,7 @@ export const MainPage = () => {
   };
   return (
     <div>
+      <h2>title</h2>
       <button onClick={getUsers}>Получить пользователей</button>
       <h1>Main Page</h1>
       {users &&

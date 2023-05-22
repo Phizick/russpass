@@ -12,7 +12,7 @@ export const testThunk = createAsyncThunk("users", () =>
 );
 
 export const testSlice = createSlice({
-  name: "users",
+  name: "test",
   initialState,
   reducer: {},
   extraReducers: {
@@ -21,9 +21,10 @@ export const testSlice = createSlice({
     },
     [testThunk.fulfilled]: (state, action) => {
       state.users = [...action.payload];
+      state.pending = false;
     },
-    [testThunk.enjected]: (state, action) => {
-      state.error = `${action.payload}`;
+    [testThunk.enjected]: (state) => {
+      state.error = `Ошибка`;
     },
   },
 });
