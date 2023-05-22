@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { testThunk } from "../../service/slice/testSlice";
+import { useEffect } from "react";
 
 export const MainPage = () => {
+  useEffect(() => {
+    dispatch(testThunk());
+  },[testThunk])
   const { users } = useSelector((state) => state.test);
   const dispatch = useDispatch();
-  const getUsers = () => {
-    dispatch(testThunk());
-  };
   return (
     <div>
-      <h2>title</h2>
-      <button onClick={getUsers}>Получить пользователей</button>
       <h1>Main Page</h1>
       {users &&
         users.map((user) => {
