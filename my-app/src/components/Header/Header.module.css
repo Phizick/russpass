@@ -1,25 +1,25 @@
-.container{
+.container {
   width: 1440px;
-  height: 72px;
+  min-height: 72px;
   order: 1;
   align-self: stretch;
   flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logoBlock{
+.logoBlock {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px;
   gap: 24px;
-  position: absolute;
   width: 342px;
   height: 48px;
-  left: 108px;
-  top: 12px;
 }
 
-.logo{
+.logo {
   width: 40px;
   height: 40px;
   border-radius: 8px;
@@ -28,7 +28,7 @@
   flex-grow: 0;
 }
 
-.menuBlock{
+.menuBlock {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -41,21 +41,19 @@
   flex-grow: 0;
 }
 
-.btnMenu{
+.btnMenu {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   /* padding: 0px 16px; */
   gap: 8px;
-
   width: 112px;
   height: 48px;
   border-radius: 12px;
-
 }
 
-.btnSearch{
+.btnSearch {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -68,7 +66,7 @@
 
   border-radius: 12px;
 }
-.ic_search{
+.ic_search {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -80,7 +78,7 @@
   border-radius: 12px;
 }
 
-.btnBonus{
+.btnBonus {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -88,48 +86,50 @@
   /* padding: 0px 16px; */
   gap: 2px;
   isolation: isolate;
-  
+
   width: 118px;
   height: 48px;
-  
+
   border-radius: 12px;
 }
-.stars{
-  position: absolute;
-width: 19px;
-height: 19px;
-left: 325px;
-top: 4px;
-
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-
+.stars {
+  width: 19px;
+  height: 19px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-.ic_coin_small{
+.ic_coin_small {
   width: 24px;
   height: 24px;
 }
 
-.rightBlockMenu{
+.rightBlockMenu {
   margin-left: 750px;
   padding: 12px 17px;
   display: flex;
   position: relative;
-  
 }
 
-.ic_rus_flag{
+.ic_rus_flag {
   width: 24px;
   height: 24px;
   margin: 0px 5px;
 }
-.textRus{
-  width: 78px;
-  height: 22px;
+.textRus {
   margin-left: 8px;
-  font-family: 'Suisse Intl';
+  font-family: inherit;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
+}
+
+.flexRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flexItem {
+  display: flex;
+  align-items: center;
 }
