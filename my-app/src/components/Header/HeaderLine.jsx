@@ -39,9 +39,6 @@ export const Header = () => {
         <div className={stylesHeader.flexItem}>
           <img className={stylesHeader.ic_rus_flag} src={heart} />
           <span className={stylesHeader.textRus}>Избранное</span>
-          <button variant="outlined" startIcon={<heart />}>
-            Delete
-          </button>
         </div>
       </div>
     </div>
