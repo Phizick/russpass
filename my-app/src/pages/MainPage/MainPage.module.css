@@ -1,7 +1,7 @@
-.title {
-    color: red;
+body {
+    background: #FAEFDB;
 }
-
-.blue {
-    color: blue;
-}
+.container{
+    width: 1440px;
+    margin: auto;
+  }
