@@ -1,0 +1,126 @@
+{
+  _id:{
+    $oid: str  // id объекта коллекции
+  },
+  dictionary_data: {  // собственно наполнение коллекций
+    _id: str  // нет
+    aac_images: list  // ААЦ Изображения
+    aac_tags: list  // AAC Тэги
+    about_booking: str  // Дополнительная информация о покупке билета
+    age: str  // Возрастное ограничение
+    billing_product_id: int  // Идентификатор продукта в биллинге
+    booking_link: str  // Ссылка на покупку билета
+    cg_announcement: str  // Краткое описание события
+    cg_recommendations: list  // CG: Рекомендации членов клуба Prime
+    city: str  // id города (справочник cities)
+    creator: str  // Кто создал запись
+    description: str  // Описание
+    disable_sessionids_autoupdate: bool  // Не обновлять автоматически sessionIds
+    discover_moscow_link: str  // ссылка на Discover.Moscow
+    duration: str  // Продолжительность, мин
+    event_type: str  // Тип события
+    galereya: list  // Галерея
+    id_izi_travel: str  // Идентификатор izi.travel
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображение обложки
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    information_pages: list  // Информационные страницы
+    is_can_buy: bool  // Можно купить
+    is_priority: bool  // Приоритетное событие
+    link_source: str  // Ссылка на источник события
+    parser_source: str  // Источник импорта
+    partner: str  // Партнер
+    partner_type: str  // Тип партнера
+    payment_method: str  // Метод покупки
+    place: list  // Площадка проведения события (справочник places)
+    pravila-soglasovaniya: bool  // Правила согласования
+    purchase_addtitional_info: str  // Дополнительная информация к стоимости
+    purchase_method: str  // Метод покупки (старый)
+    recommendation_prime: list  // City Guide Рекомендации
+    region: str  // Регион
+    remote_event_id: str  // нет
+    remote_place_id: str  // нет
+    restaurants: list  // Рестораны проведения события
+    rp_price_id: int  // Идентификатор тарифа в биллинге
+    russpass_recommendation: bool  // RUSSPASS рекомендует
+    schedule: [  // Расписание
+      {
+        title: str  // заголовок
+        start: {
+          $date: str // Дата и время начала
+        },
+        end: {
+          $date: str // Дата и время окончания
+        }
+      }
+    ]
+    schedule_description: str  // Дополнительная информация к расписанию
+    scheduleUpdatedByPlace: bool  // нет
+    sessionId: str  // sessionId
+    sessionIds: [  // sessionIds
+            {
+        id: str  // id сессии
+        startTime: str  //  Дата время начала
+        endTime: str  //  Дата время окончания
+        timezone: str  //  Временная зона
+        isAllDay: bool  // Длитяс ли весь день
+            }
+    ]
+    social_buttons: list  // Кнопки социальных сетей
+    sort: int  // Порядковый номер сортировки
+    tags: list  // Тэги
+    tags_main_screen: list  // Тэг главного экрана
+    ticket_price: str  // Стоимость билета
+    timetable_by_place: [  // Расписание и сессии по площадкам(Yandex Afisha)
+      {
+        placeId: str  // id места (справочник places)
+        sessionIds: [
+          {
+            id: str  // id сессии
+            startTime: str  //  Дата время начала
+            endTime: str  //  Дата время окончания
+            timezone: str  //  Временная зона
+            isAllDay: bool  // Длитяс ли весь день
+          }
+        ]
+        schedule: [  // Расписание
+          {
+            title: str  // заголовок
+            start: {
+              $date: str // Дата и время начала
+            }
+            end: {
+              $date: str // Дата и время окончания
+            }
+          }
+        ]
+      }
+      
+    ]
+    title: str  // Заголовок
+    type_audio_guide: list  // Тип аудиогида
+    without_schedule: bool  // Событие без расписания
+    ya_id: str  // Идентификатор города в справочнике на стороне Яндекс
+    youtube_video_url: str  // Ссылка на видео в Youtube
+    youtube_videos: list  // YouTube ролики
+  }
+}

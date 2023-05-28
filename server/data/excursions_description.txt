@@ -1,0 +1,100 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  },
+  dictionary_data: {
+    audioguide: bool  // наличие аудиогида
+    campaign: list  // id кампании (акции)
+    city: str  // идентификатор города 
+    description: str  // описание
+    duration: str  // длительность минуты
+    duration_hours: float  // длительность часы
+    duration_string: str  // длительность часы
+    event_type: str  // тип события
+    excursion_form: str  // Способ передвижения
+    excursion_type: str  // Тип экскурсии
+    html_file: list  // html файл
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью картитнки
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Список изображений
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    information_pages: list  // Информационные страницы
+    is_can_buy: bool  // Возможность покупки
+    is_priority: bool  // Признак приоритета
+    language: list  // Язык проведения
+    min_age: str  // Минимальный возраст
+    minGroupCount: str  // Минимальное количество группы
+    parser_source: str  // Источник импорта
+    partner: str  // Партнер
+    partner_logo: list  // Логотипы партнёра
+    pravila-soglasovaniya: bool // Правила согласования
+    price: int  // Цена от 
+    program: str  // Программа экскурсий
+    region: str  // Регион
+    route: [  // Основные события
+      {
+        title: str  // заголовок
+        day_contents: {  // события, посещения внутри дня
+          dictionaries: list  // Используемые словари
+          selected: [  // события / рестораны и прочие участвующие
+            {
+              id: str
+              active: bool
+            }
+          ]
+          active: list  // список активностей
+        }
+        events: [  // список событий
+          {
+            title: str
+            images: [
+              {
+                source: {
+                  id: str
+                }
+              }
+            ]
+            geo_data: {
+              coordinates: []
+            }
+          }
+        ]
+      }
+    ]
+    russpass_recommendation: bool  // Признак значка "RUSSPASS рекомендует" true / false
+    schedule_excursion: str  // Расписание проведения экскурсии
+    season_end: date  // Дата конца сезона
+    season_start: date  // Дата начала сезона
+    short_description: str  // Краткое описание экскурсий
+    sort: int  // Порядковый номер сортировки
+    tags: list  // Тэги дополнительные
+    tags_main_screen: list  //   Тэг главного экрана
+    title: str  // Заголовок
+    tour_composition: [  // Состав экскурсии
+      {
+        title: str
+        list: list
+      }
+    ]
+    type_audio_guide: list  // Тип аудиогида
+    without_schedule: bool  // Признак, показывающий, отсутствует расписание у активности: true, false
+  }
+}

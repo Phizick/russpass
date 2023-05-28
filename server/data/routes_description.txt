@@ -1,0 +1,56 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  }
+  dictionary_data: {
+    billing_product_id: int  // Идентификатор продукта в биллинге
+    city: str  // Город
+    description: str  // Описание
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображение
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    information_pages: list  // Информационные страницы
+    is_can_buy: bool  // нет
+    is_priority: bool  // нет
+    packet_price: int  // Стоимость пакета
+    pravila-soglasovaniya: bool  // Правила согласования
+    region: str  // Регион
+    route: {  // Маршрут
+      active: list  // список активностей
+      dictionaries: list  // Используемые словари
+      selected: [  // события / рестораны и прочие участвующие
+        {
+          id: str
+          active: bool
+        }
+      ]
+    }
+    route_tags: list  // Тэги маршрута
+    rp_price_id: int  // Идентификатор тарифа в биллинге
+    short_description: str  // Краткое описание
+    sort: int  // Порядковый номер сортировки
+    tags_main_screen: list  // Тэг главного экрана
+    time: str  // Продолжительность, мин
+    title: str  // Заголовок
+    type_audio_guide: list  // Тип аудиогида
+  }
+}

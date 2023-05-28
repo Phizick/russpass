@@ -1,0 +1,104 @@
+{
+  _id:{
+    $oid: str  // id объекта коллекции
+  },
+  dictionary_data: {
+    address: str  // адрес отеля
+    arrival_time: str  // Время заезда
+    beach_services: list  // Список услуг отеля связанных с пляжным отдыхом
+    city: str  // Город
+    common_services: list  // Список общих услуг отеля
+    departure_time: str  // Время выезда
+    description: str  // Описание отеля
+    email: str  // Контактный email
+    entertainment_services: list  // Список услуг отеля связанных с развлечением
+    facility_services: list  // Список общих удобств отеля
+    fitness_services: list  // Список услуг отеля связанных со здоровьем и красотой
+    geo_data: {
+      center_distance: float  // расстояние до центра города
+      coordinates: [  // Координаты (широта и долгота)
+        #.##,  // широта
+        #.##  // долгота
+      ]
+      type: str  // Тип координат
+    }
+    google_place: {  // информация из Google
+       meta: {  // доп информация
+        formatted_address: str  // Адрес Google
+        update_time: str  // дата и время последнего обновления
+      }
+    }
+    hotel_rooms: {  // наличие типов комнат
+      active: list  // список активных комнат
+      dictionaries: list  // id словаря который описывает комнаты
+      selected: [  // все доступные комнаты
+        {
+          id: str
+          active: bool
+        }
+      ]  
+    }
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображения
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    import_denied_reason: str  // Причина отклонения модератором
+    integration_id: str  // id интеграции
+    meals: list  // услуги питания
+    parser_source: str  // Условный код внешней системы откуда было загружено событие Yandex Afisha – ya/afisha; infotech  – INFOTECH; LeClick– leclick/restaurants; LKP Личный кабинет партнёров
+    partner: str  // id партнёра
+    partner_is_not_moderated: bool  // Партнёр не проходил модерацию
+    partner_system_type: str  // Наименование системы партнера
+    phones: list  // Контактные телефоны
+    region: str  // Регион
+    rooms: [  // Список объектов содержащий информацию о номерах
+      {
+        name: str  // Название комнат 
+        description: str  // Описание комнат
+        images: list  // Изображения комнат
+        integration_id: str  // id интеграции
+        rate_plans: [  // Тарифы комнаты
+          {
+            integration_id: str // id интеграции
+            name: str  // Наименование тарифа
+            description: str  // Описание тарифа
+            currency: str  // Валюта тарифа
+            services: list  // Услуги тарифа
+          }
+        ]
+      }
+    ]
+    russpass_recommendation: bool  // Признак значка "RUSSPASS рекомендует" true / false
+    services: [  // Услуги отеля
+      {
+        name: str  // Название услуги
+        description: str  // Описание услуги
+        kind: str  // Тип услуги
+        mealPlanCode: str  // Код услуги питания
+        integration_id: str  // id интеграции
+      }
+    ]
+    sort: int  // Порядковый номер сортировки
+    stars: str  // Звёзд отеля
+    time_zone: str  // Временная зона
+    title: str  // Название
+  }
+}

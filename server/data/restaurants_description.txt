@@ -1,0 +1,288 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  }
+  dictionary_data: {
+    _id: str  // нет
+    address: str  // Адрес
+    avg_price_level: str  // Уровень цен
+    avg_time_visit: int  // Среднее время посещения, мин
+    bill: int  // Средний чек
+    can_reserve: bool  // Доступен для бронирования
+    cg_recommendations: list  // Рекомендации членов клуба Prime
+    chain: list  // Сеть
+    children: list  // Дети
+    city: list  // Город
+    country: list  // Страна
+    cuisines: list  // Кухни
+    description: str  // Описание
+    district: list  // Район
+    emails: list  // Электронные почты
+    external_id: str  // Внешний ID
+    external_status: int  // нет
+    geo_data: {
+      center_distance: float  // расстояние до центра города
+      coordinates: [  // Координаты (широта и долгота)
+        #.##,  // широта
+        #.##  // долгота
+      ]
+      type: str  // Тип координат
+    }
+    google_place: {  // Google Place
+      meta: {
+        formatted_address: str  // Адрес Google
+        international_phone_number: str  // Номер телефона
+        place_id: str  // id места из внешней системы
+        update_time: str  // дата и время последнего обновления
+        vicinity: str  // "около"
+        website: str  // сайт места
+      }
+      schedule_google: {  // Расписание google
+        all: {
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        days: {  // Объекты дней недели
+          Sun: {  // Воскресенье
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Mon: {  // Понедельник
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Tue: {  // Вторник
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Wed: {  // Среда
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Thu: {  // Четверг
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Fri: {  // Пятница
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+          Sat: {  // Суббота
+            breaks: [  // перерывы
+              {
+                startTime: str  // время начала перерыва
+                endTime: str  // время конца перерыва 
+              }
+            ]
+            closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+            endTime: str  // Время окончания работы
+            startTime: str  // Время начала работы
+          }
+        }
+      }
+      use_manual_schedule: bool  // Применять ручное расписание
+    }
+    guides: list  // Гиды
+    holding: str  // Холдинг
+    hp_images: list  // Изображения Hotel Prime
+    icons: [  // Тэги ресторана (Особенности)
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображения
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images360: list  // 360 изображения
+    import_denied: bool  // Отклонено модератором
+    menu_type: list  // Тип меню
+    metro: list  // Метро
+    parser_source: str  // Источник импорта
+    partner: str  // Партнер
+    partner_subtype: list  // Подтип партнера ПП
+    partner_type: list  // Тип партнера
+    phones: list  // Телефоны
+    post_code: str  // Почтовый индекс
+    promo: list  // Промоакции
+    rating_prime: str  // Рейтинг Prime
+    region: str  // Регион
+    remote_id: str  // ID Ресторана
+    remote_status: int  // нет
+    rest_id: str // нет
+    rest_services: list  // Услуги ресторанов
+    route_description: str  // Как добраться
+    russpass_recommendation: bool  // RUSSPASS рекомендует
+    short_description: str  // Краткое описание
+    showcase_filter: list  // Фильтрация по витринам
+    sites: list  // web сайты
+    sort: int  // Порядковый номер сортировки
+    source: str  // нет
+    subcategories: list  // Подкатегория
+    tags: list  // Тэги основные (фильтр)
+    tags_main_screen: list  // Тэг главного экрана
+    title: str  // Название
+    type_audio_guide: list  // Тип аудиогида
+    working_time: {  // График работы площадки
+      all: {
+        breaks: [  // перерывы
+          {
+            startTime: str  // время начала перерыва
+            endTime: str  // время конца перерыва 
+          }
+        ]
+        closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+        endTime: str  // Время окончания работы
+        startTime: str  // Время начала работы
+      }
+      days: {  // Объекты дней недели
+        Sun: {  // Воскресенье
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Mon: {  // Понедельник
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Tue: {  // Вторник
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Wed: {  // Среда
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Thu: {  // Четверг
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Fri: {  // Пятница
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+        Sat: {  // Суббота
+          breaks: [  // перерывы
+            {
+              startTime: str  // время начала перерыва
+              endTime: str  // время конца перерыва 
+            }
+          ]
+          closed: bool  // Закрыта ли на целый день активность или нет; true - закрыто
+          endTime: str  // Время окончания работы
+          startTime: str  // Время начала работы
+        }
+      }
+    }
+    working_time_description: str  // Примечание ко времени работы
+  }
+}

@@ -1,0 +1,92 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  }
+  dictionary_data: {
+    city: str  // Город
+    complexity: str  // Cложность
+    days: int  // Количество дней
+    description: str  // Описание
+    hotel_stars: str  // Звезды отеля
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображения
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    included: str  // В стоимость включено
+    is_can_buy: bool  // Можно купить
+    language: str  // Язык проведения
+    min_age: str  // Возрастное ограничение
+    minGroupCount: str  // Группа
+    nights: int  // Количество ночей
+    paid_separately: str  // Оплачивается дополнительно
+    partner: str  // Партнер
+    pravila-soglasovaniya: bool  // Правила согласования
+    price: str  // Стоимость
+    program: str  // Программа
+    region: str  // Регион
+    route: [  // Программа тура
+      {
+        title: str  // заголовок
+        day_contents: {  // события, посещения внутри дня
+          dictionaries: list  // Используемые словари
+          selected: [  // события / рестораны и прочие участвующие
+            {
+              id: str
+              active: bool
+            }
+          ]
+          active: list  // список активностей
+        }
+        events: [  // список событий
+          {
+            title: str
+            images: [
+              {
+                source: {
+                  id: str
+                }
+              }
+            ]
+            geo_data: {
+              coordinates: []
+            }
+          }
+        ]
+      }
+    ]
+    russpass_recommendation: bool  // RUSSPASS рекомендует
+    season_end: str  // Конец сезона
+    season_start: str  // Начало сезона
+    short_description: str  // Краткое описание
+    sort: int  // Порядковый номер сортировки
+    tags: list  // Тэги
+    tags_main_screen: list  // Тэг главного экрана
+    title: str  // Заголовок
+    tour_composition: [  // Состав тура
+      {
+        title: str
+        list: list
+      }
+    ]
+    tour_type: str  // Тип тура
+    type_audio_guide: list  // Тип аудиогида
+  }
+}

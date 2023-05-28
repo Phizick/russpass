@@ -1,0 +1,78 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  }
+  dictionary_data: {
+    city: str  // Город
+    days_count: int  // Длительность (дни)
+    description: str  // Полное описание
+    duration_hours: int  // Общее время прохождения маршрута (часы)
+    image_detailed_page_main: [  // Главная картинка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    image_explore_preview: [  // Превью для Explore
+    {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Изображения
+    {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    information_pages: list  // Информационные страницы
+    price: int  // Стоимость маршрута
+    region: str  // Регион
+    route: [  // Маршрут по дням
+      {
+        title: str  // заголовок
+        day_contents: {  // события, посещения внутри дня
+          dictionaries: list  // Используемые словари
+          selected: [  // события / рестораны и прочие участвующие
+            {
+              id: str
+              active: bool
+            }
+          ]
+          active: list  // список активностей
+        }
+        recommended_hotels: list
+        descriptions: {  // Описания
+          'active_id': {  // id из day_contents
+            description: str  // Описание для данного элемента маршрута (может быть отлично от данных объекта)
+            duration_custom_for_this_route: int  // Продолжительность для данного элемента маршрута (может быть отлична от данных объекта)
+          }
+        }
+        translated_data: {
+          'language': {  // 2-х буквенное описание языка
+            descriptions: {  // Описания
+              'active_id': {  // id из day_contents
+                description: str  // Описание для данного элемента маршрута (может быть отлично от данных объекта)
+              }
+            }
+          }
+        }
+      }
+    ]
+    russpass_recommendation: bool  // RUSSPASS рекомендует
+    short_description: str  // Краткое описание
+    sort: int  // Порядковый номер сортировки
+    tags: list  // Тэги
+    tags_main_screen: list  // Тэги главного экрана
+    title: str  // Заголовок
+    total_activity_price: int  // Суммарная цена на активности
+    type: str  // Тип маршрута
+    type_audio_guide: list  // Тип аудиогида
+    video_link: str  // Ссылка на видео
+    video_url_detail: str  // Ссылка на видео на странице маршрута
+  }
+}

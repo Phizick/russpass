@@ -1,0 +1,54 @@
+{
+  _id: {
+    $oid: str  // id объекта коллекции
+  }
+  dictionary_data: {
+    city: list  // Список городов
+    coat_of_arms: list  // Герб (аналог: сoat_of_arms)
+    code_ott_avia_from: str  // Код региона откуда (города) в onetwotrip для авиабилетов
+    code_ott_avia_to: str  // Код региона куда (города) в onetwotrip для авиабилетов
+    code_ott_rzd_from: str  // Код региона откуда (города) в onetwotrip жд билетов
+    code_ott_rzd_to: str  // Код региона куда (города) в onetwotrip жд билетов
+    country: str  // Страна
+    description: str  // Детальное описание
+    description_title: str  // Заголовок детального описания
+    external_id: str  // Внешний ID
+    gallery: list  // Галерея изображений
+    icon: [  // Иконка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [  // Основное изображение
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool  // Отклонено модератором
+    map_info: str  // Информация для карты
+    on_map: [  // Регион на карте
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    price_hotel: int  // Цена билета за ночь (отель)
+    short_description: str  // Краткое описание
+    showcase_cards: list  // Активности на витрине региона
+    showcase_description: str  // Описание на витрине региона
+    sort: int  // Порядковый номер сортировки
+    time_zone: list  // Часовой пояс
+    title: str  // Заголовок
+    title_accusative: str  // Название в винительном падеже
+    title_dative: str  // Название в дательном падеже
+    title_genitive: str  // Название в родительном падеже
+    travel_line_id: str  // TravelLine ID
+    url: str  // Официальный адрес сайт региона/ОИВа
+    сoat_of_arms: list  // Герб (аналог: coat_of_arms)
+  }
+}

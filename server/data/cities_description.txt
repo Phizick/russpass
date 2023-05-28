@@ -1,0 +1,84 @@
+{
+  id:{
+    $oid: str  // id объекта коллекции
+  },
+  dictionary_data: {  // собственно наполнение словарей
+    _id: str  // нет
+    aliases: list // Псевдонимы
+    cg_images: list // Обложка CityGuide / Alfa travel
+    city: str // идентификатор города
+    country: list // идентификатор страны
+    description: str // описание
+    description_title: str // заголовок
+    external_id: str // внешний идентификатор 
+    gallery: list // Галерея изображений
+    geo_data { 
+      center_distance: float  // расстояние до центра
+      coordinates: [  // Координаты (широта и долгота)
+        #.##,  // широта
+        #.##  // долгота
+      ]
+      type: str //  Тип геоданных (по умолчанию: points)
+    }
+    google_place {
+      use_manual_schedule: bool // Использовать google расписание 
+    }
+    hp_images: list // HP Картинки
+    icon: [ // Иконка
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    images: [ // Основное изображений
+      {
+        source: {
+          id: str  // id картинки в бд
+        }
+      }
+    ]
+    import_denied: bool // импорт запрещен
+    is_priority: bool // приоритет
+    list_image: list // идентификаторы и источники файлов изображений
+    on_map: list // Город на карте
+    rating: int // Рейтинг
+    region: str // Регион
+    short_description: str // Краткое описание
+    sort: int // Порядковый номер сортировки
+    source: str // Источник данных
+    timezone: str  // часовой пояс
+    title: str // Название
+    title_dative: str // Название в винительном падеже
+    title_genitive: str // Название в родительном падеже
+    travel_line_id: str // Идентификатор города в справочнике на стороне travelline (TravelLine ID)
+    weather_sync: bool  // Признак синхронизации погоды
+    working_time: {
+      days: {
+        Mon: {
+          closed: bool // Нерабочий день Понедельник
+        }
+        Tue: {
+          closed: bool // Нерабочий день Вторник
+        }
+        Wed: {
+          closed: bool // Нерабочий день Среда
+        }
+        Thu: {
+          closed: bool // Нерабочий день Четверг
+        }
+        Fri: {
+          closed: bool // Нерабочий день Пятница
+        }
+        Sat: {
+          closed: bool // Нерабочий день Суббота
+        }
+        Sun: {
+          closed: bool // Нерабочий день Воскресенье
+        }
+      }
+    }
+    ya_id: str // Идентификатор города в справочнике на стороне Яндекс
+    сoat_of_arms: list  // Герб
+  }
+}
