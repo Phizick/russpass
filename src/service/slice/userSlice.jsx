@@ -3,7 +3,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 export const fetchUser = createAsyncThunk(
     'user/fetchUser',
     async () => {
-        const response = await fetch('https://cors-anywhere.herokuapp.com/http://46.243.143.123:8010/user/646f5292e0f96fc203cb75c2');
+        const response = await fetch('https://api.allorigins.win/get?url=http://46.243.143.123:8010/user/646f5292e0f96fc203cb75c2');
         return await response.json();
     }
 );
