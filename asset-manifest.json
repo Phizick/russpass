@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/russpass/static/css/main.513dcc82.css",
-    "main.js": "/russpass/static/js/main.10300e3e.js",
+    "main.js": "/russpass/static/js/main.3bf95fff.js",
     "static/js/496.3366df09.chunk.js": "/russpass/static/js/496.3366df09.chunk.js",
     "static/media/байкал.png": "/russpass/static/media/байкал.dc1159c0626ca0fd599d.png",
     "static/media/family.png": "/russpass/static/media/family.3390feb3fe7ffabed8eb.png",
@@ -9,11 +9,11 @@
     "static/media/lovers.png": "/russpass/static/media/lovers.9942ba2853fb05c95014.png",
     "index.html": "/russpass/index.html",
     "main.513dcc82.css.map": "/russpass/static/css/main.513dcc82.css.map",
-    "main.10300e3e.js.map": "/russpass/static/js/main.10300e3e.js.map",
+    "main.3bf95fff.js.map": "/russpass/static/js/main.3bf95fff.js.map",
     "496.3366df09.chunk.js.map": "/russpass/static/js/496.3366df09.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.513dcc82.css",
-    "static/js/main.10300e3e.js"
+    "static/js/main.3bf95fff.js"
   ]
 }
