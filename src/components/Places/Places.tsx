@@ -18,7 +18,7 @@ const Places: React.FC = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const response = await fetch(`http://46.243.143.123:8010/user/${userId}`);
+            const response = await fetch(`https://cors-anywhere.herokuapp.com/http://46.243.143.123:8010/user/${userId}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
