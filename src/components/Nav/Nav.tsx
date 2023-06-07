@@ -23,7 +23,7 @@ const Separator = styled.span`
 `;
 
 const NavLinks = [
-    { title: "Отели", active: true, path: '/'},
+    { title: "Отели", active: true, path: '/hotels'},
     { title: "Рестораны", active: false, path: '/rest' },
     { title: "Ивенты", active: false, path: '/events' },
     { title: "Маршруты", active: false, path: '/' },

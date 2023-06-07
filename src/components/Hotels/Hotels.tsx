@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import RestCard from "../Card/RestCard";
 import {useSelector} from "react-redux";
+
+import HotelCard from "../Card/HotelCard";
+
 
 const ToursWrapper = styled.div`
   display: grid;
@@ -11,10 +13,9 @@ const ToursWrapper = styled.div`
   margin: 0 auto; 
 `;
 
-const Restaurants: React.FC = () => {
+const Hotels: React.FC = () => {
     const [data, setData] = useState([]);
     const { userId } = useSelector((state: any) => state.auth)
-    console.log(userId)
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -23,24 +24,23 @@ const Restaurants: React.FC = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
+
             const tagIds = jsonResponse.interests[0];
             const tags = {
-                restaurants: tagIds.restaurants
+                stars: tagIds.hotels,
+
             };
-            console.log(tags)
             fetchData(tags);
         };
         fetchUserData();
     }, [userId]);
 
-
-    const fetchData = async (tags: any) => {
+    const fetchData = async (stars: any) => {
         const response = await fetch(
-            "http://46.243.143.123:8010/recommendations",
+            "http://46.243.143.123:8010/recommendhotel",
             {
                 method: "POST",
-                body: JSON.stringify(tags),
+                body: JSON.stringify(stars),
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -50,23 +50,25 @@ const Restaurants: React.FC = () => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
-        const dictionaryData = jsonResponse.restaurants.map((tour: any) => tour);
+console.log(jsonResponse)
+        const dictionaryData = jsonResponse.map((hotel: any) => hotel);
         const randomData = dictionaryData.sort(() => Math.random() - 0.5).slice(0, 10);
         setData(randomData);
+        console.log(randomData)
+
     };
 
     return (
         <ToursWrapper>
             {data && data.length >= 0 &&
-                data.map((tour: any) => (
-                    <RestCard key={tour.city} data={tour} />
+                data.map((event: any) => (
+                    <HotelCard key={event.city} data={event} />
 
                 ))}
         </ToursWrapper>
     );
 };
 
-export default Restaurants;
+export default Hotels;
 
 

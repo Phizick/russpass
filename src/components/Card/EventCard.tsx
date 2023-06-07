@@ -99,7 +99,7 @@ const EventCard: React.FC<any> = ({ data }) => {
             $oid
         }
     } = data;
-    console.log(data)
+
 
 
     return (
@@ -111,7 +111,7 @@ const EventCard: React.FC<any> = ({ data }) => {
                 </div>
                 <ImageWrapper>
                     <ImageKindle src={kindle} alt={'kindle'}/>
-                    <Image src={`https://cms.russpass.ru/v1/file/${image_explore_preview[0]?.source?.id}/800`} alt={title} />
+                    <Image src={`https://cms.russpass.ru/v1/file/${image_explore_preview[0]?.source?.id.$oid}/800`} alt={title} />
                 </ImageWrapper>
             </HeaderWrapper>
             <Description>{description}</Description>

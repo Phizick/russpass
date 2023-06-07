@@ -82,6 +82,7 @@ export default function InterestsPage({ onSubmit }: Props) {
             'tracks',
             'excursions',
             'routes',
+            'hotels'
         ];
         const activityMap: { [id: string]: string[] } = {};
         const sortedInterests: any = {};
@@ -118,14 +119,17 @@ export default function InterestsPage({ onSubmit }: Props) {
     const handleSubmit = () => {
         const sortedActivities = sortInterestsByTemplate(interestsTemplate, selectedActivities);
 
+        console.log(sortedActivities)
+
 
         const formData = {
             interests: [sortedActivities],
-            password: "testingfetch",
-            username: "testingfetch",
+            password: "testing",
+            username: "testing",
         };
         onSubmit(formData);
     };
+
 
     return (
         <>

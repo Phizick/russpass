@@ -55,6 +55,13 @@ export const interestsTemplate = {
         '637b485112bcf2bb9a353d99'
     ],
     routes: [
+    ],
+    hotels: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5'
     ]
 };
 

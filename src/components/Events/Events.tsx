@@ -18,7 +18,7 @@ const Events: React.FC = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const response = await fetch(`https://api.allorigins.win/get?url=http://46.243.143.123:8010/user/${userId}`);
+            const response = await fetch(`http://46.243.143.123:8010/user/${userId}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -36,7 +36,7 @@ const Events: React.FC = () => {
 
     const fetchData = async (tags: any) => {
         const response = await fetch(
-            "https://cors-anywhere.herokuapp.com/http://46.243.143.123:8010/recommendations",
+            "http://46.243.143.123:8010/recommendations",
             {
                 method: "POST",
                 body: JSON.stringify(tags),
@@ -50,7 +50,7 @@ const Events: React.FC = () => {
         }
         const jsonResponse = await response.json();
         console.log(jsonResponse);
-        const dictionaryData = jsonResponse.events.map((tour: any) => tour);
+        const dictionaryData = jsonResponse.events.map((event: any) => event);
         const randomData = dictionaryData.sort(() => Math.random() - 0.5).slice(0, 10);
         setData(randomData);
     };

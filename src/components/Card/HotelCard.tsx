@@ -65,7 +65,6 @@ const Price = styled.p`
   margin-bottom: 10px;
 `;
 
-
 const Description = styled.p`
   font-size: 14px;
   margin: 0;
@@ -89,12 +88,12 @@ const Button = styled.button`
   }
 `;
 
-const PlacesCard: React.FC<any> = ({ data }) => {
+const HotelCard: React.FC<any> = ({ data }) => {
     const { dictionary_data: {
         image_explore_preview,
-        address,
         description,
         title,
+        address
     },
         _id: {
             $oid
@@ -102,19 +101,23 @@ const PlacesCard: React.FC<any> = ({ data }) => {
     } = data;
 
 
+
     return (
         <CardWrapper>
             <HeaderWrapper>
                 <div>
                     <Title>{title}</Title>
-                    <Price>~{address}</Price>
+                    <Price>{address}</Price>
                 </div>
-
+                <ImageWrapper>
+                    <ImageKindle src={kindle} alt={'kindle'}/>
+                    <Image src={`https://cms.russpass.ru/v1/file/${image_explore_preview[0]?.source?.id}/800`} alt={title} />
+                </ImageWrapper>
             </HeaderWrapper>
             <Description>{description}</Description>
-            <a href={`https://russpass.ru/event/${$oid}`}><Button >Подробная информация</Button></a>
+            <a href={`https://russpass.ru/restaurant/${$oid}`}><Button >Узнать больше</Button></a>
         </CardWrapper>
     );
 };
 
-export default PlacesCard;
+export default HotelCard;

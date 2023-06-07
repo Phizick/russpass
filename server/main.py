@@ -92,6 +92,32 @@ def recommendations():
 
     return jsonify(response)
 
+@app.route('/recommendhotel', methods=['POST'])
+def recommendation():
+    stars = request.json.get('stars', [])
+    folder_path = './data'
+    file_name = "hotels.json"
+
+    tours_data = load_tours_data(folder_path, file_name)
+    filtered_tours = filter_hotels_by_stars(tours_data, stars, limit=10)
+
+    return jsonify(filtered_tours)
+
+def filter_hotels_by_stars(tours, stars_list, limit=10):
+    filtered_tours = []
+
+    for tour in tours:
+        dict_data = tour.get("dictionary_data", {})
+        tour_stars = dict_data.get("stars", [])
+
+        if tour_stars in stars_list:
+            filtered_tours.append(tour)
+
+            if len(filtered_tours) == limit:
+                break
+
+    return filtered_tours
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8010, debug=True)

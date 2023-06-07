@@ -6,6 +6,7 @@ import {ToursPage} from "../../Pages/ToursPage/ToursPage";
 import {RestPage} from "../../Pages/RestaurantsPage/RestaurantsPage";
 import {EventsPage} from "../../Pages/EventsPage/EventsPage";
 import {PLacesPage} from "../../Pages/PlacesPage/PlacesPage";
+import {HotelPage} from "../../Pages/HotelPage/HotelPage";
 
 
 export const routes: RouteObject[] = [
@@ -32,5 +33,9 @@ export const routes: RouteObject[] = [
     {
         path: '/places',
         element: <PLacesPage/>
+    },
+    {
+        path: '/hotels',
+        element: <HotelPage/>
     }
 ]

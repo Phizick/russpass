@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import kindle from '../../images/kindle.png'
 
@@ -100,6 +100,28 @@ const TourCard: React.FC<any> = ({ data }) => {
             $oid
         }
     } = data;
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const url = `https://russpass.ru/tours/${$oid}`;
+
+        console.log('Пользователь кликнул по ссылке:', url);
+
+        const newWindow = window.open(url, '_blank');
+        if (!newWindow) return;
+
+        const startTime = new Date().getTime();
+
+        const checkFocus = () => {
+            if (document.hasFocus()) {
+                const timeSpent = new Date().getTime() - startTime;
+                console.log('Пользователь вернулся. Прошло времени:', timeSpent);
+                window.removeEventListener('focus', checkFocus);
+            }
+        };
+        window.addEventListener('focus', checkFocus);
+    };
 
     return (
         <CardWrapper>
@@ -114,7 +136,10 @@ const TourCard: React.FC<any> = ({ data }) => {
                 </ImageWrapper>
             </HeaderWrapper>
             <Description>{description}</Description>
-            <a href={`https://russpass.ru/tour/${$oid}`}><Button >Перейти к плану</Button></a>
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={linkRef} onClick={handleLinkClick} href={`https://russpass.ru/tour/${$oid}`}><Button >Перейти к плану</Button></a>
         </CardWrapper>
     );
 };

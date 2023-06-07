@@ -30,13 +30,14 @@ const Tours: React.FC = () => {
                 tours: tagIds.tours,
             };
             fetchData(tags);
+            console.log(tags)
         };
         fetchUserData();
     }, []);
 
     const fetchData = async (tags: any) => {
         const response = await fetch(
-            "https://api.allorigins.win/get?url=http://46.243.143.123:8010/recommendations",
+            "http://46.243.143.123:8010/recommendations",
             {
                 method: "POST",
                 body: JSON.stringify(tags),

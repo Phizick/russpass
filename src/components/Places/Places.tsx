@@ -17,9 +17,9 @@ const Places: React.FC = () => {
     console.log(userId)
 
     useEffect(() => {
-        const targetURL = `http://46.243.143.123:8010/user/${userId}`;
+
         const fetchUserData = async () => {
-            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(targetURL)}`);
+            const response = await fetch(`http://46.243.143.123:8010/user/${userId}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

@@ -29,9 +29,10 @@ const DiscoverPage: React.FC = ()  => {
                 body: JSON.stringify(formData),
             };
 
-            const response = await fetch('https://api.allorigins.win/get?url=http://46.243.143.123:8010/user', requestOptions);
+            const response = await fetch('http://46.243.143.123:8010/user', requestOptions);
 
             const data = await response.json();
+            console.log(data.user_id)
 
             dispatch(createUserSuccess(data.user_id));
         }
