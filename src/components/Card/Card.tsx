@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import kindle from '../../images/kindle.png'
-
+import {interestsTemplate} from "../../Constants/activitiesTemplate";
+import { useDispatch } from 'react-redux';
+import { createUserSuccess } from '../../service/slice/authSlice';
+import {useSelector} from "react-redux";
+import {selectUserId} from '../../service/slice/authSlice'
 
 const CardWrapper = styled.div`
   display: flex;
@@ -89,6 +93,8 @@ const Button = styled.button`
 `;
 
 const TourCard: React.FC<any> = ({ data }) => {
+    const userId = useSelector(selectUserId);
+    const dispatch = useDispatch();
     const { dictionary_data: {
         image_explore_preview,
         price,
@@ -102,26 +108,104 @@ const TourCard: React.FC<any> = ({ data }) => {
     } = data;
     const linkRef = useRef<HTMLAnchorElement | null>(null);
 
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const url = `https://russpass.ru/tours/${$oid}`;
+    const sortInterestsByTemplate = (interestsTemplate: any, selectedActivities: string[]): any => {
+        const interestCategories: string[] = [
+            'events',
+            'places',
+            'restaurants',
+            'tours',
+            'tracks',
+            'excursions',
+            'routes',
+            'hotels'
+        ];
+        const activityMap: { [id: string]: string[] } = {};
+        const sortedInterests: any = {};
 
-        console.log('Пользователь кликнул по ссылке:', url);
+        interestCategories.forEach((category) => {
+            activityMap[category] = interestsTemplate[category] || [];
+            sortedInterests[category] = [];
+        });
 
-        const newWindow = window.open(url, '_blank');
-        if (!newWindow) return;
+        const validSelectedActivities = selectedActivities.filter((activityId) => {
+            const activityCategories = interestCategories.filter((category) => activityMap[category].includes(activityId));
+            return activityCategories.length > 0;
+        });
 
+        validSelectedActivities.forEach((activityId) => {
+            const activityCategories = interestCategories.filter((category) => activityMap[category].includes(activityId));
+            activityCategories.forEach((category: string) => {
+                sortedInterests[category].push(activityId);
+            });
+        });
+        return sortedInterests;
+    };
+
+    // const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    //     e.preventDefault();
+    //     const url = `https://russpass.ru/tours/${$oid}`;
+    //
+    //     console.log('Пользователь кликнул по ссылке:', url);
+    //
+    //     const newWindow = window.open(url, '_blank');
+    //     if (!newWindow) return;
+    //
+    //     const startTime = new Date().getTime();
+    //
+    //     const checkFocus = () => {
+    //         if (document.hasFocus()) {
+    //             const timeSpent = new Date().getTime() - startTime;
+    //             console.log('Пользователь вернулся. Прошло времени:', timeSpent);
+    //             window.removeEventListener('focus', checkFocus);
+    //         }
+    //     };
+    //     window.addEventListener('focus', checkFocus);
+    // };
+
+    const checkFocus = async () => {
         const startTime = new Date().getTime();
 
-        const checkFocus = () => {
-            if (document.hasFocus()) {
+        window.removeEventListener('beforeunload', checkFocus);
+
+        window.addEventListener('blur', () => {
+            setTimeout(async () => {
                 const timeSpent = new Date().getTime() - startTime;
-                console.log('Пользователь вернулся. Прошло времени:', timeSpent);
-                window.removeEventListener('focus', checkFocus);
-            }
-        };
-        window.addEventListener('focus', checkFocus);
+
+                if (timeSpent > 12000) {
+                    try {
+                        const response = await fetch('http://46.243.143.123:8010/cards', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: '60ca1a5a1a4b0700192fcb02', name: 'tours' }),
+                        });
+
+                        const { data: tags } = await response.json();
+                        const sortedInterests = sortInterestsByTemplate(interestsTemplate, tags);
+
+                        const user = {
+                            interests: sortedInterests,
+                        };
+                        console.log(user)
+
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(user),
+                        };
+                        const response2 = await fetch(`http://46.243.143.123:8010/user/${userId}`, requestOptions);
+                        const data = await response2.json();
+
+                        console.log(data);
+                        dispatch(createUserSuccess(data.user_id));
+                    } catch (error) {
+                        console.error('Ошибка при отправке запросов:', error);
+                    }
+                }
+            }, 12000);
+        });
     };
+
+    window.addEventListener('beforeunload', checkFocus);
 
     return (
         <CardWrapper>
@@ -139,7 +223,7 @@ const TourCard: React.FC<any> = ({ data }) => {
             <a
                 target="_blank"
                 rel="noopener noreferrer"
-                ref={linkRef} onClick={handleLinkClick} href={`https://russpass.ru/tour/${$oid}`}><Button >Перейти к плану</Button></a>
+                ref={linkRef} onClick={checkFocus} href={`https://russpass.ru/tour/${$oid}`}><Button >Перейти к плану</Button></a>
         </CardWrapper>
     );
 };
