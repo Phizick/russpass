@@ -25,7 +25,9 @@ const Tours: React.FC = () => {
             }
             const jsonResponse = await response.json();
             console.log(jsonResponse);
-            const tagIds = jsonResponse.interests[0];
+            const tagIds = jsonResponse.interests && jsonResponse.interests.length
+                ? jsonResponse.interests[0]
+                : jsonResponse.interests;
             const tags = {
                 tours: tagIds.tours,
             };
@@ -60,7 +62,7 @@ const Tours: React.FC = () => {
 
     return (
         <ToursWrapper>
-            {data.length > 0 &&
+            {data && data.length > 0 &&
                 data.map((tour: any) => (
                     <TourCard key={tour.city} data={tour} />
 

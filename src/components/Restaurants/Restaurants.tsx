@@ -13,6 +13,7 @@ const ToursWrapper = styled.div`
 
 const Restaurants: React.FC = () => {
     const [data, setData] = useState([]);
+    const [listAvailable, setAvailable] = useState(true)
     const { userId } = useSelector((state: any) => state.auth)
     console.log(userId)
 
@@ -23,13 +24,19 @@ const Restaurants: React.FC = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            const tagIds = jsonResponse.interests[0];
+            console.log(jsonResponse.interests);
+            const tagIds = jsonResponse.interests && jsonResponse.interests.length
+                ? jsonResponse.interests[0]
+                : jsonResponse.interests;
             const tags = {
                 restaurants: tagIds.restaurants
             };
-            console.log(tags)
-            fetchData(tags);
+            if (tags.restaurants) {
+                fetchData(tags);
+            } else {
+                console.log('No tags found for user');
+                setAvailable(false)
+            }
         };
         fetchUserData();
     }, [userId]);
@@ -58,11 +65,14 @@ const Restaurants: React.FC = () => {
 
     return (
         <ToursWrapper>
-            {data && data.length >= 0 &&
-                data.map((tour: any) => (
-                    <RestCard key={tour.city} data={tour} />
-
-                ))}
+            {
+                listAvailable && data && data.length >= 0 ?
+                    data.map((tour: any) => (
+                        <RestCard key={tour.city} data={tour} />
+                    ))
+                    :
+                    <p>Похоже, вы не выбрали ничего интересного в этой категории, попробуйте еще</p>
+            }
         </ToursWrapper>
     );
 };

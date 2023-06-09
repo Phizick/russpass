@@ -24,7 +24,9 @@ const Events: React.FC = () => {
             }
             const jsonResponse = await response.json();
             console.log(jsonResponse);
-            const tagIds = jsonResponse.interests[0];
+            const tagIds = jsonResponse.interests && jsonResponse.interests.length
+                ? jsonResponse.interests[0]
+                : jsonResponse.interests;
             const tags = {
                 events: tagIds.events,
                 

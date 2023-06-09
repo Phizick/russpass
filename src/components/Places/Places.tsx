@@ -24,8 +24,10 @@ const Places: React.FC = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const jsonResponse = await response.json();
-            console.log(jsonResponse);
-            const tagIds = jsonResponse.interests[0];
+
+            const tagIds = jsonResponse.interests && jsonResponse.interests.length
+                ? jsonResponse.interests[0]
+                : jsonResponse.interests;
             const tags = {
                 places: tagIds.places,
             };
