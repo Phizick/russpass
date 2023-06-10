@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
-import kindle from '../../images/kindle.png'
+import {sortInterestsByTemplate} from "../../Utils/sortInterestsByTemplate/sortInterestsByTemplate";
+import {interestsTemplate} from "../../Constants/activitiesTemplate";
+import { useDispatch } from 'react-redux';
+import {useSelector} from "react-redux";
+import {selectUserId} from '../../service/slice/authSlice';
+import { createUserSuccess } from '../../service/slice/authSlice';
 
 
 const CardWrapper = styled.div`
@@ -29,31 +34,6 @@ const HeaderWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-const ImageWrapper = styled.div`
-  width: 125px;
-  height: 96px;    
-  margin-right: 20px;
-  border-bottom: 16px solid white;
-  border-left: 8px solid white;
-  border-right: 8px solid white;
-  border-top: 8px solid white;
-  transform: rotate(-3deg);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
-  position: relative;
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const ImageKindle = styled.img`
-    position: absolute;
-    left: 65px;
-    top: -10px;
-    z-index: 5;
-`;
 
 const Title = styled.h2`
   font-size: 24px;
@@ -90,8 +70,10 @@ const Button = styled.button`
 `;
 
 const PlacesCard: React.FC<any> = ({ data }) => {
+    const userId = useSelector(selectUserId);
+    const dispatch = useDispatch();
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
     const { dictionary_data: {
-        image_explore_preview,
         address,
         description,
         title,
@@ -100,6 +82,51 @@ const PlacesCard: React.FC<any> = ({ data }) => {
             $oid
         }
     } = data;
+
+    const checkFocus = async () => {
+        const startTime = new Date().getTime();
+
+        window.removeEventListener('beforeunload', checkFocus);
+
+        window.addEventListener('blur', () => {
+            setTimeout(async () => {
+                const timeSpent = new Date().getTime() - startTime;
+
+                if (timeSpent > 12000) {
+                    try {
+                        const response = await fetch('http://46.243.143.123:8010/cards', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: `${$oid}`, name: 'events' }),
+                        });
+
+                        const { data: tags } = await response.json();
+                        const sortedInterests = sortInterestsByTemplate(interestsTemplate, tags);
+
+                        const user = {
+                            interests: sortedInterests,
+                        };
+                        console.log(user)
+
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(user),
+                        };
+                        const response2 = await fetch(`http://46.243.143.123:8010/user/${userId}`, requestOptions);
+                        const data = await response2.json();
+
+                        console.log(data);
+                        dispatch(createUserSuccess(data.user_id));
+                    } catch (error) {
+                        console.error('Ошибка при отправке запросов:', error);
+                    }
+                }
+            }, 12000);
+        });
+    };
+
+    window.addEventListener('beforeunload', checkFocus);
 
 
     return (
@@ -112,7 +139,12 @@ const PlacesCard: React.FC<any> = ({ data }) => {
 
             </HeaderWrapper>
             <Description>{description}</Description>
-            <a href={`https://russpass.ru/event/${$oid}`}><Button >Подробная информация</Button></a>
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={linkRef}
+                onClick={checkFocus}
+                href={`https://russpass.ru/event/${$oid}`}><Button >Подробная информация</Button></a>
         </CardWrapper>
     );
 };

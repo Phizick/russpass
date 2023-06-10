@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
     setUsername,
@@ -64,6 +64,7 @@ const LoginModal = () => {
     const [usernameInput, setUsernameInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const dispatch = useDispatch();
+    const [isOpened, setOpened] = useState(true)
 
 
     const handleUsernameChange = (
@@ -87,9 +88,25 @@ const LoginModal = () => {
         setPasswordInput("");
     };
 
+    useEffect(() => {
+        const handleEscClose = (e: KeyboardEvent): void => {
+            if (e.key === "Escape" && isOpened) {
+                dispatch(setModalActive(false));
+            }
+        };
+
+        if (isOpened) {
+            document.addEventListener("keydown", handleEscClose);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", handleEscClose);
+        };
+    }, [dispatch, isOpened]);
+
     return (
         <LoginWrapper>
-            <Prompt>Для использования сервиса необходимо авторизоваться.</Prompt>
+            <Prompt>Для использования сервиса необходимо авторизоваться. Для продолжения без авторизации нажмите Esc</Prompt>
             <LoginForm onSubmit={handleSubmit}>
                 <FormField>
                     <Input

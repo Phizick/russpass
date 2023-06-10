@@ -1,45 +1,13 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
 import kindle from '../../images/kindle.png'
-interface TourCardProps {
-    data: {
-        _id: {
-            $oid: string;
-        };
-        dictionary_data: {
-            city: string;
-            complexity: string;
-            days: number;
-            description: string;
-            hotel_stars: string;
-            image_detailed_page_main: {
-                source: {
-                    id: string;
-                };
-            }[];
-            images: {
-                source: {
-                    id: string;
-                };
-            }[];
-            min_age: string;
-            nights: number;
-            price: string;
-            route: {
-                title: string;
-                day_contents: {
-                    selected: {
-                        id: string;
-                        active: boolean;
-                    }[];
-                    active: string[];
-                };
-            }[];
-            tags: string[];
-            title: string;
-        };
-    };
-}
+import {sortInterestsByTemplate} from "../../Utils/sortInterestsByTemplate/sortInterestsByTemplate";
+import {interestsTemplate} from "../../Constants/activitiesTemplate";
+import { useDispatch } from 'react-redux';
+import {useSelector} from "react-redux";
+import {selectUserId} from '../../service/slice/authSlice';
+import { createUserSuccess } from '../../service/slice/authSlice';
+
 
 const CardWrapper = styled.div`
   display: flex;
@@ -103,33 +71,7 @@ const Price = styled.p`
   margin-bottom: 10px;
 `;
 
-const Activities = styled.p`
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
 
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-`;
-
-const Tag = styled.div`
-  background-color: #007bff;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 20px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  font-size: 12px;
-  
-`;
-
-const Nights = styled.p`
-  font-size: 14px;
-  margin-bottom: 10px;
-`;
 
 const Description = styled.p`
   font-size: 14px;
@@ -155,6 +97,9 @@ const Button = styled.button`
 `;
 
 const RestCard: React.FC<any> = ({ data }) => {
+    const userId = useSelector(selectUserId);
+    const dispatch = useDispatch();
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
     const { dictionary_data: {
         image_explore_preview,
         description,
@@ -165,6 +110,51 @@ const RestCard: React.FC<any> = ({ data }) => {
             $oid
         }
     } = data;
+
+    const checkFocus = async () => {
+        const startTime = new Date().getTime();
+
+        window.removeEventListener('beforeunload', checkFocus);
+
+        window.addEventListener('blur', () => {
+            setTimeout(async () => {
+                const timeSpent = new Date().getTime() - startTime;
+
+                if (timeSpent > 12000) {
+                    try {
+                        const response = await fetch('http://46.243.143.123:8010/cards', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ id: `${$oid}`, name: 'events' }),
+                        });
+
+                        const { data: tags } = await response.json();
+                        const sortedInterests = sortInterestsByTemplate(interestsTemplate, tags);
+
+                        const user = {
+                            interests: sortedInterests,
+                        };
+                        console.log(user)
+
+                        const requestOptions = {
+                            method: 'PUT',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(user),
+                        };
+                        const response2 = await fetch(`http://46.243.143.123:8010/user/${userId}`, requestOptions);
+                        const data = await response2.json();
+
+                        console.log(data);
+                        dispatch(createUserSuccess(data.user_id));
+                    } catch (error) {
+                        console.error('Ошибка при отправке запросов:', error);
+                    }
+                }
+            }, 12000);
+        });
+    };
+
+    window.addEventListener('beforeunload', checkFocus);
 
 
 
@@ -183,7 +173,12 @@ const RestCard: React.FC<any> = ({ data }) => {
                 </ImageWrapper>
             </HeaderWrapper>
             <Description>{description}</Description>
-            <a href={`https://russpass.ru/restaurant/${$oid}`}><Button >Узнать больше</Button></a>
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={linkRef}
+                onClick={checkFocus}
+                href={`https://russpass.ru/restaurant/${$oid}`}><Button >Узнать больше</Button></a>
         </CardWrapper>
     );
 };

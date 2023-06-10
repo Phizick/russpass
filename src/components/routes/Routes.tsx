@@ -9,6 +9,7 @@ import {PLacesPage} from "../../Pages/PlacesPage/PlacesPage";
 import {HotelPage} from "../../Pages/HotelPage/HotelPage";
 
 
+
 export const routes: RouteObject[] = [
     {
         path: '/',
@@ -37,5 +38,9 @@ export const routes: RouteObject[] = [
     {
         path: '/hotels',
         element: <HotelPage/>
-    }
+    },
+    // {
+    //     path: '/demo',
+    //     element: <DemoPage/>
+    // }
 ]

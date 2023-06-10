@@ -26,7 +26,6 @@ const NavLinks = [
     { title: "Отели", active: true, path: '/hotels'},
     { title: "Рестораны", active: false, path: '/rest' },
     { title: "Ивенты", active: false, path: '/events' },
-    { title: "Маршруты", active: false, path: '/' },
     { title: "Места", active: false, path: '/places' },
     { title: "Туры", active: false, path: '/tours' },
 ];
