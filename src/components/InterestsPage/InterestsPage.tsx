@@ -75,7 +75,6 @@ export default function InterestsPage({ onSubmit }: Props) {
     const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
 
 
-
     const handleCardClick = ({ id }: Activity) => {
         if (selectedActivities.includes(`${id}`)) {
             setSelectedActivities(selectedActivities.filter((activityId) => activityId !== `${id}`));
