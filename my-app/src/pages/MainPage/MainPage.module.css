@@ -1,0 +1,40 @@
+body {
+	background: #FAEFDB;
+}
+.container{
+	width: 1440px;
+	margin: auto;
+}
+
+.titleBlock{
+	justify-content: center;
+	margin: 54px 48px;
+}
+.titleText{
+	display: flex;
+	justify-content: center;
+}
+.whiteBlock{
+	background: #FFFBF3;
+	width: 1332px;
+	height: 616px;
+	border-radius: 4em;
+	padding: 48px 54px 0px;
+}
+.btnGroup{
+	display: flex;
+	justify-content: center;
+}
+.footer{ 
+	margin:  0 auto;
+}
+.row{
+	display: inline-flex;
+	margin: 6em;
+	width: 100%;
+}
+.row h3{
+	display: flex;
+	text-align: center;
+	margin-left: 20px;
+}

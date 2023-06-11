@@ -1,0 +1,135 @@
+.container {
+  width: 1440px;
+  min-height: 72px;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 342px;
+  height: 48px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.menuBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  isolation: isolate;
+  width: 278px;
+  height: 48px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.btnMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0px 16px; */
+  gap: 8px;
+  width: 112px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.btnSearch {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0px 16px; */
+  gap: 8px;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+}
+.ic_search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.btnBonus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0px 16px; */
+  gap: 2px;
+  isolation: isolate;
+
+  width: 118px;
+  height: 48px;
+
+  border-radius: 12px;
+}
+.stars {
+  width: 19px;
+  height: 19px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.ic_coin_small {
+  width: 24px;
+  height: 24px;
+}
+
+.rightBlockMenu {
+  margin-left: 750px;
+  padding: 12px 17px;
+  display: flex;
+  position: relative;
+}
+
+.ic_rus_flag {
+  width: 24px;
+  height: 24px;
+  margin: 0px 5px;
+}
+.textRus {
+  margin-left: 8px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.flexRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flexItem {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,21 @@
+.card{
+  position: relative;
+  display: inline-block;
+  justify-content: flex-start;
+  margin-top: 40px;
+  margin-left: 15px
+  /* background-image: url(../../Images/Card1.png);
+  background-repeat: no-repeat;
+  background-size: contain; */
+}
+.card img {
+  max-width: 288px;
+  max-height: 368px;
+}
+.cardTitle{
+ color:aliceblue;
+ text-align: center;
+ margin-top: -340px;
+}
+
+
